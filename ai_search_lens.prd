@@ -1,0 +1,583 @@
+AI SEARCH LENS — PRODUCT REQUIREMENTS DOCUMENT
+=================================================
+
+Project
+-------
+TinyFish Technical Student Bounty Drop 001
+
+Product Name
+------------
+AI Search Lens
+
+Product Type
+------------
+SEO + AI Search Visibility Page Auditor
+
+Document Status
+---------------
+MVP Product Requirements
+
+1. PRODUCT VISION
+-----------------
+
+Build an evidence-backed auditor that evaluates how well any publicly accessible webpage can be discovered, read, understood, and potentially cited by search engines and AI systems.
+
+The product must audit the EXACT page submitted by the user.
+
+This is a page-level product, not a homepage/domain-only checker.
+
+Core promise:
+
+"Paste any page. See how visible and AI-readable it is — and exactly what to fix."
+
+2. PROBLEM
+----------
+
+Traditional SEO tools often overwhelm users with technical metrics or focus heavily on domains.
+
+AI search introduces another requirement:
+
+A page can technically exist and be indexable while still being difficult for AI systems to understand, extract, and confidently cite.
+
+Users need one simple workflow that connects:
+
+- Search discoverability
+- Technical SEO
+- Content/intent
+- AI readability
+- Citation readiness
+- Actionable fixes
+
+3. TARGET USERS
+---------------
+
+Primary:
+
+- Developers
+- Student builders
+- Startup founders
+- SEO beginners
+- Content creators
+- SaaS teams
+- Marketing teams
+
+Secondary:
+
+- SEO consultants
+- Growth teams
+- Agencies
+- Technical marketers
+
+4. CORE USER STORY
+------------------
+
+As a user, I want to paste any public webpage URL so that I can understand whether that exact page is discoverable in search and readable/understandable by AI systems, and receive prioritized fixes.
+
+5. NON-NEGOTIABLE REQUIREMENTS
+------------------------------
+
+5.1 Any URL
+
+The input must accept:
+
+- example.com
+- www.example.com
+- https://example.com
+- example.com/pricing
+- example.com/blog/article
+- example.com/docs/getting-started
+- example.com/product/tool
+
+The system must NOT force the user to submit only a root domain.
+
+5.2 Exact page auditing
+
+If the user enters:
+
+example.com/pricing
+
+the system must audit:
+
+/pricing
+
+It must not silently replace it with:
+
+example.com/
+
+5.3 URL normalization
+
+The system should safely normalize incomplete URLs.
+
+Example:
+
+example.com/pricing
+
+becomes:
+
+https://example.com/pricing
+
+5.4 TinyFish Fetch
+
+TinyFish Fetch must read the live submitted page.
+
+5.5 TinyFish Search
+
+TinyFish Search must be used to gather meaningful discovery/search context.
+
+5.6 Evidence-backed output
+
+Important findings must be based on observed page/search evidence.
+
+5.7 Actionable recommendations
+
+The report must tell users what to change, not merely identify problems.
+
+5.8 Visibility + AI readability
+
+The report must explicitly connect search visibility with AI readability.
+
+6. USER FLOW
+------------
+
+STEP 1 — Landing
+
+User sees:
+
+AI Search Lens
+
+Headline:
+
+"Audit any webpage for Search + AI visibility."
+
+Input:
+
+"example.com/pricing"
+
+Button:
+
+"Audit Page →"
+
+Optional query field:
+
+"Optional: what would someone search to find this page?"
+
+STEP 2 — Validation
+
+System:
+
+- trims input
+- validates URL
+- adds protocol if missing
+- rejects unsupported schemes
+- checks public accessibility constraints
+- preserves path/query information
+
+STEP 3 — Audit Initialization
+
+The system stores:
+
+targetUrl
+normalizedUrl
+optionalQuery
+
+The target URL becomes immutable for the audit run.
+
+STEP 4 — Live Page Fetch
+
+TinyFish Fetch reads the exact URL.
+
+STEP 5 — Search Discovery
+
+TinyFish Search investigates relevant search/discovery context.
+
+STEP 6 — Analysis
+
+Analysis engine evaluates:
+
+- technical SEO
+- content
+- intent
+- search visibility
+- AI readability
+- citation readiness
+
+STEP 7 — Scoring
+
+System generates:
+
+- overall score
+- category scores
+- severity levels
+- evidence
+- recommendations
+
+STEP 8 — Results
+
+User receives an actionable report.
+
+7. AUDIT CATEGORIES
+-------------------
+
+A. Technical SEO — 25%
+
+Evaluate:
+
+- page accessibility
+- HTTPS
+- title
+- meta description
+- canonical
+- robots/indexability signals
+- heading structure
+- internal links
+- image alt text
+- structured data
+- important technical issues
+
+B. Search Visibility — 25%
+
+Evaluate using TinyFish Search:
+
+- discoverability
+- query alignment
+- result presence
+- search snippet quality
+- competing pages
+- search intent alignment
+
+C. AI Readability — 25%
+
+Evaluate:
+
+- clarity of page purpose
+- information hierarchy
+- headings
+- concise definitions
+- structured content
+- important facts
+- entity clarity
+- extractability
+- ambiguity
+- excessive boilerplate
+
+D. Content & Intent — 15%
+
+Evaluate:
+
+- primary topic
+- target audience
+- intent alignment
+- completeness
+- useful information
+- content quality
+- unnecessary fluff
+
+E. Citation Readiness — 10%
+
+Evaluate whether an AI system could:
+
+- understand the information
+- identify useful claims
+- extract them
+- attribute them to the page
+- confidently cite the page
+
+8. SCORE
+--------
+
+Overall score: 0–100.
+
+Suggested weighting:
+
+Technical SEO        25
+Search Visibility    25
+AI Readability       25
+Content & Intent     15
+Citation Readiness   10
+
+Every score deduction must be explainable.
+
+Do not produce arbitrary scores.
+
+9. FINDING FORMAT
+-----------------
+
+Every important finding should contain:
+
+- Title
+- Category
+- Severity
+- Evidence
+- Why it matters
+- Recommended fix
+- Expected impact
+- Confidence
+
+Example:
+
+HIGH — Weak page definition
+
+Evidence:
+The page's main purpose is not clearly stated near the primary heading.
+
+Why it matters:
+AI systems may have lower confidence about what the page represents.
+
+Fix:
+Add a concise definition/value proposition directly below the H1.
+
+10. SEVERITY
+------------
+
+CRITICAL
+Blocks access, crawling, indexing, or fundamental understanding.
+
+HIGH
+Meaningful issue with strong expected visibility/readability impact.
+
+MEDIUM
+Important optimization opportunity.
+
+LOW
+Minor improvement or polish.
+
+11. REPORT STRUCTURE
+--------------------
+
+Header:
+
+AI Search Lens
+
+[Exact submitted URL]
+
+Overall Score:
+74/100
+
+Summary:
+Short explanation of the page's current state.
+
+Category cards:
+
+Search Visibility
+AI Readability
+Technical SEO
+Content & Intent
+Citation Readiness
+
+Priority Fixes:
+
+1. High-impact issue
+2. High-impact issue
+3. Medium issue
+4. Medium issue
+5. Low issue
+
+Evidence:
+
+Show the observed evidence supporting important findings.
+
+Visibility ↔ AI Readability:
+
+Explain:
+
+- whether the page can be discovered
+- whether the content is easy to understand
+- whether AI systems can extract useful information
+- whether the page is citation-ready
+
+Exact Page Details:
+
+Display:
+
+- target URL
+- title
+- meta description
+- canonical
+- headings
+- structured data
+- relevant technical signals
+
+12. OPTIONAL QUERY
+------------------
+
+A user may enter a search query.
+
+Example:
+
+URL:
+example.com/pricing
+
+Query:
+best AI resume analyzer for students
+
+The query should influence Search and intent analysis.
+
+If no query is supplied:
+
+Infer likely intent from the page.
+
+The query is optional and must never be required for an audit.
+
+13. TINYFISH REQUIREMENT
+-----------------------
+
+TinyFish is a core part of the product.
+
+The implementation must demonstrate meaningful usage of:
+
+1. TinyFish Fetch
+2. TinyFish Search
+
+Fetch proves what the submitted page actually contains.
+
+Search provides discovery/visibility context.
+
+The final demo must make this relationship understandable.
+
+14. EXACT PAGE PRINCIPLE
+------------------------
+
+Submitted URL:
+
+https://site.com/blog/article
+
+Primary audit:
+
+/blog/article
+
+Supporting context may include:
+
+site.com
+
+But the audit must never become a domain-only audit.
+
+This requirement is critical to product correctness.
+
+15. ERROR STATES
+----------------
+
+Invalid URL:
+
+"Enter a valid public webpage URL, such as example.com/pricing."
+
+Unreachable page:
+
+"We couldn't access this page. Check that the URL is public and reachable."
+
+TinyFish Fetch failure:
+
+"Page reading failed. No fabricated findings will be generated."
+
+TinyFish Search failure:
+
+"Search visibility could not be verified. Other page-level checks are still available."
+
+Partial audit:
+
+Clearly mark which sections were not verified.
+
+16. SECURITY REQUIREMENTS
+-------------------------
+
+The backend must protect against arbitrary URL abuse.
+
+Required:
+
+- SSRF protection
+- localhost/private-network blocking
+- protocol restrictions
+- request timeout
+- response-size limits
+- rate limiting
+- API keys server-side only
+- safe HTML handling
+- controlled browser execution
+
+17. PERFORMANCE REQUIREMENTS
+----------------------------
+
+Target total audit duration:
+
+Preferably under 60 seconds.
+
+Where safe, Fetch and Search may run concurrently.
+
+The system must prioritize reliable evidence over fake speed/progress.
+
+18. MVP ACCEPTANCE CRITERIA
+---------------------------
+
+The MVP passes when all are true:
+
+[ ] Root URL works
+[ ] Nested page URL works
+[ ] Blog page works
+[ ] Pricing page works
+[ ] Product page works
+[ ] Documentation page works
+[ ] URL without https:// works
+[ ] Exact submitted URL is preserved
+[ ] Exact page is fetched
+[ ] TinyFish Fetch is used meaningfully
+[ ] TinyFish Search is used meaningfully
+[ ] Overall score is 0–100
+[ ] Category scores exist
+[ ] Findings contain evidence
+[ ] Findings contain severity
+[ ] Recommendations are actionable
+[ ] Visibility and AI readability are both evaluated
+[ ] Relationship between visibility and readability is explained
+[ ] Failed live checks are not fabricated
+[ ] Partial failures are clearly disclosed
+
+19. DEMO REQUIREMENT
+-------------------
+
+The final demonstration should use multiple real public pages.
+
+Suggested validation set:
+
+- homepage
+- pricing page
+- blog article
+- product page
+- documentation page
+
+For each page:
+
+1. Submit exact URL.
+2. Confirm the target page is preserved.
+3. Confirm TinyFish Fetch reads that page.
+4. Confirm TinyFish Search provides discovery context.
+5. Confirm findings are specific to the page.
+6. Confirm recommendations are actionable.
+
+The demo must visibly prove that the application is an actual PAGE AUDITOR.
+
+20. SUCCESS METRICS
+-------------------
+
+MVP success:
+
+- Users can audit any public page without confusion.
+- Results are understandable within seconds.
+- Findings are evidence-backed.
+- Recommendations are actionable.
+- TinyFish Search + Fetch are meaningfully integrated.
+- The product demonstrates a clear Search ↔ AI readability connection.
+
+21. PRODUCT NORTH STAR
+----------------------
+
+The product should answer four questions:
+
+1. Can search systems discover this page?
+2. Can crawlers read this page?
+3. Can AI systems understand this page?
+4. Can AI systems confidently extract and cite information from this page?
+
+Final positioning:
+
+"AI Search Lens turns any public webpage into an evidence-backed Search + AI visibility audit."
+
+END OF PRD
